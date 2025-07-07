@@ -12,6 +12,8 @@ import lombok.Setter;
 @Setter
 public class ProductDTO {
 
+    private Long id;
+
     @NotBlank(message = "Name of the product cannot be empty")
     @Size(message = "Name of the product should be between 3 and 50 characters", min = 3, max = 50)
     private String name;

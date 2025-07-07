@@ -35,4 +35,16 @@ public class ProductController {
         return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);
     }
 
+    @GetMapping(path = "/products/{productId}")
+    public ResponseEntity<ProductDTO> getProductById(@PathVariable Long productId) {
+        ProductDTO product = productService.getProductById(productId);
+        return new ResponseEntity<>(product, HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/products/search")
+    public ResponseEntity<List<ProductDTO>> searchProducts(@RequestParam String query) {
+        List<ProductDTO> searchResults = productService.searchProducts(query);
+        return new ResponseEntity<>(searchResults, HttpStatus.OK);
+    }
+
 }

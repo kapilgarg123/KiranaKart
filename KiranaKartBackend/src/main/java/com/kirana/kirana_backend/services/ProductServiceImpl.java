@@ -51,5 +51,19 @@ public class ProductServiceImpl implements ProductService{
                 .map(productEntity -> modelMapper.map(productEntity, ProductDTO.class))
                 .collect(Collectors.toList());
     }
-    
+
+    @Override
+    public ProductDTO getProductById(Long productId) {
+        ProductEntity productEntity = productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found with id: " + productId));
+        return modelMapper.map(productEntity, ProductDTO.class);
+    }
+
+    @Override
+    public List<ProductDTO> searchProducts(String query) {
+        return productRepository.findBynameContainingIgnoreCase(query)
+                .stream()
+                .map(productEntity -> modelMapper.map(productEntity, ProductDTO.class))
+                .collect(Collectors.toList());
+    }
 }

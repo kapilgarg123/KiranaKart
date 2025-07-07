@@ -12,6 +12,8 @@ public interface ProductService {
     ProductDTO createNewProduct(ProductDTO productDTO, Long categoryId);
 
     List<ProductDTO> getProductsByCategory(Long categoryId);
+    
+    ProductDTO getProductById(Long productId);
 
-
+    List<ProductDTO> searchProducts(String query);
 }
